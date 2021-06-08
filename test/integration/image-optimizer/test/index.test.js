@@ -517,6 +517,12 @@ function runTests({ w, isDev, domains }) {
       expect(res.headers.get('cache-control')).toBe(
         'public, max-age=315360000, immutable'
       )
+
+      const res2 = await fetchViaHTTP(appPort, '/_next/image', query, opts)
+      expect(res2.status).toBe(200)
+      expect(res2.headers.get('cache-control')).toBe(
+        'public, max-age=315360000, immutable'
+      )
     }
   })
 
